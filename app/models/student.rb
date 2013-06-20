@@ -2,12 +2,20 @@ require_relative '../../db/config'
 require 'date'
 
 class Student < ActiveRecord::Base
+  has_many :jointeachersstudents, foreign_key: :student_id
+  has_many :teachers, through: :jointeachersstudent
+
+
   validates :email, :uniqueness => true
   validates_exclusion_of :age, :in => 0..4
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/
   validates_format_of :phone, :with => /\(?\d{3}\)?-?\s?\d{3}\-\d{4}/
 
   attr_reader :name
+
+
+  has_one :teacher
+
 
   def name 
     first_name + " " + last_name 
