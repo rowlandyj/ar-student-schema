@@ -5,7 +5,7 @@ class CreateNameColumn < ActiveRecord::Migration
     add_column :students, :name, :string
     
     Student.all.each do |student|
-      student.update_attributes!(:name => student.name)
+      student.update_attributes!(:name => student.first_name + ' ' + student.last_name)
     end
 
     remove_column :students, :first_name

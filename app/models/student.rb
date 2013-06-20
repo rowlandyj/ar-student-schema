@@ -2,10 +2,8 @@ require_relative '../../db/config'
 require 'date'
 
 class Student < ActiveRecord::Base
-  has_many :jointeachersstudents, foreign_key: :student_id
-  has_many :teachers, through: :jointeachersstudent
-
-
+  has_many :jointeachersstudents, :foreign_key => :teacher_id
+  has_many :teachers, through: :jointeachersstudents
   validates :email, :uniqueness => true
   validates_exclusion_of :age, :in => 0..4
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/
@@ -13,13 +11,6 @@ class Student < ActiveRecord::Base
 
   attr_reader :name
 
-
-  has_one :teacher
-
-
-  def name 
-    first_name + " " + last_name 
-  end
 
   def age
     now = Date.today
