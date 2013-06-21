@@ -5,8 +5,8 @@ require_relative '../config'
 class JoinTeachersStudents < ActiveRecord::Migration
   def change
     create_table :join_teachers_students do |t|
-      t.references :student 
-      t.references :teacher 
+      t.integer :student_id 
+      t.integer :teacher_id
     end
   end
 end

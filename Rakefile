@@ -1,5 +1,4 @@
 $LOAD_PATH << 'app/models'
-p $LOAD_PATH
 require 'rake'
 require 'rspec/core/rake_task'
 require_relative 'db/config'
@@ -43,8 +42,6 @@ end
 desc 'Assign Teacher Student Relationship'
 task "db:relationship" do
   JoinTeachersStudent.create!(student_id: 1, teacher_id: 1)
-  Teacher.create!({name: 'prof dooooom', email: 'doooom@gmail.com', phone: '408-123-6789'})
-  Student.create!({name: 'Lil John', gender: 'shemale', birthday: '1969-01-01', email: 'johnjon@gmail.com', phone: '415-123-1234'})
 end
 
 desc "Run the specs"
